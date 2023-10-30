@@ -7,10 +7,6 @@ import bcrypt
 @post("/login")
 def _():
     try:
-      # if user is logged, go to the profile page of that user
-        # user = request.get_cookie("user", secret=x.COOKIE_SECRET)
-        # if user:
-        #     return {"info": "success login", "user_name": user["user_username"]}
         db = x.db()
         user_email_username = request.forms.get('user_email_username')
         user = ''
