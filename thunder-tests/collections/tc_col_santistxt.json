@@ -1,0 +1,236 @@
+{
+    "_id": "23769ca0-65cc-4051-85df-5afdfad86b97",
+    "colName": "SantisTXT",
+    "created": "2023-03-16T13:37:25.693Z",
+    "sortNum": 20000,
+    "folders": [],
+    "requests": [
+        {
+            "_id": "10442733-2481-4d57-9c1f-1e039dccdc4b",
+            "colId": "23769ca0-65cc-4051-85df-5afdfad86b97",
+            "containerId": "",
+            "name": "Sign up",
+            "url": "https://fiotext.com/sign-up",
+            "method": "POST",
+            "sortNum": 45000,
+            "created": "2023-03-20T09:56:44.422Z",
+            "modified": "2023-08-08T07:52:07.948Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "user_email",
+                        "value": "lass876q@stud.kea.dk"
+                    },
+                    {
+                        "name": "user_phone",
+                        "value": "30665533"
+                    },
+                    {
+                        "name": "user_password",
+                        "value": "password"
+                    },
+                    {
+                        "name": "user_confirm_password",
+                        "value": "password"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "ffe138f4-ea61-4d36-8172-157af6fb342f",
+            "colId": "23769ca0-65cc-4051-85df-5afdfad86b97",
+            "containerId": "",
+            "name": "Verify account",
+            "url": "https://smses.eu.pythonanywhere.com/api-verify-account",
+            "method": "POST",
+            "sortNum": 190000,
+            "created": "2023-03-20T09:57:33.779Z",
+            "modified": "2023-06-08T09:15:22.588Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "user_api_key",
+                        "value": "2c46d7427c5b4579b28975874dfd1619"
+                    },
+                    {
+                        "name": "user_verification_key",
+                        "value": "2c46d7427c5b4579b28975874dfd1619",
+                        "isDisabled": true
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "85f2d6a3-bca8-4819-a0a1-f8649b877f7c",
+            "colId": "23769ca0-65cc-4051-85df-5afdfad86b97",
+            "containerId": "",
+            "name": "Login",
+            "url": "https://fiotext.com/login",
+            "method": "POST",
+            "sortNum": 67500,
+            "created": "2023-03-20T09:58:58.659Z",
+            "modified": "2023-08-08T07:54:56.525Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "user_email",
+                        "value": "lass876q@stud.kea.dk"
+                    },
+                    {
+                        "name": "user_phone",
+                        "value": "30665533",
+                        "isDisabled": true
+                    },
+                    {
+                        "name": "user_password",
+                        "value": "password"
+                    },
+                    {
+                        "name": "user_confirm_password",
+                        "value": "password",
+                        "isDisabled": true
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "ca1d0018-f06e-4829-9d89-b97d1a454c8d",
+            "colId": "23769ca0-65cc-4051-85df-5afdfad86b97",
+            "containerId": "",
+            "name": "Send sms",
+            "url": "https://fiotext.com/send-sms",
+            "method": "POST",
+            "sortNum": 78750,
+            "created": "2023-03-20T10:00:59.263Z",
+            "modified": "2023-08-08T07:56:15.138Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "user_api_key",
+                        "value": "4d624d3fdc8936a42b30be271cd8cc82"
+                    },
+                    {
+                        "name": "sms_message",
+                        "value": "Hola guapa"
+                    },
+                    {
+                        "name": "sms_to_phone",
+                        "value": "52651368"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "434b1083-fb74-4080-94c3-395202398ff7",
+            "colId": "23769ca0-65cc-4051-85df-5afdfad86b97",
+            "containerId": "",
+            "name": "Forgot password",
+            "url": "https://smses.eu.pythonanywhere.com/api-forgot-password",
+            "method": "POST",
+            "sortNum": 210000,
+            "created": "2023-03-20T10:05:44.231Z",
+            "modified": "2023-03-20T10:10:13.998Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "user_email",
+                        "value": "lass876q@stud.kea.dk"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "86111336-1b7d-4e2f-a455-4c7f2e3773c6",
+            "colId": "23769ca0-65cc-4051-85df-5afdfad86b97",
+            "containerId": "",
+            "name": "Reset password",
+            "url": "https://smses.eu.pythonanywhere.com/api-reset-password",
+            "method": "POST",
+            "sortNum": 220000,
+            "created": "2023-03-20T10:10:41.789Z",
+            "modified": "2023-03-20T10:13:21.813Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "user_password_reset_key",
+                        "value": "82972ada765444d4ad76e762b0b3a0b1"
+                    },
+                    {
+                        "name": "user_password",
+                        "value": "Santi1234"
+                    },
+                    {
+                        "name": "user_confirm_password",
+                        "value": "Santi1234"
+                    }
+                ]
+            },
+            "tests": []
+        },
+        {
+            "_id": "1806eab2-ee7e-4fca-a05a-461f8a77a4a7",
+            "colId": "23769ca0-65cc-4051-85df-5afdfad86b97",
+            "containerId": "",
+            "name": "forgot-password",
+            "url": "https://fiotext.com/change-password",
+            "method": "POST",
+            "sortNum": 90000,
+            "created": "2023-06-07T12:00:02.601Z",
+            "modified": "2023-06-08T09:25:43.224Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "formdata",
+                "raw": "",
+                "form": [
+                    {
+                        "name": "user_password",
+                        "value": "password"
+                    },
+                    {
+                        "name": "user_phone",
+                        "value": "30665533"
+                    },
+                    {
+                        "name": "user_password_reset_key",
+                        "value": "60a5"
+                    },
+                    {
+                        "name": "user_confirm_password",
+                        "value": "password"
+                    }
+                ]
+            },
+            "tests": []
+        }
+    ]
+}

@@ -1,0 +1,59 @@
+<!-- MODAL START -->
+<div id="login_notlogged"
+    class="hidden transition ease-in-out fixed z-50 left-0 top-0 w-full h-full overflow-auto bg-gray-700/60">
+    <div class="bg-black my-[45px] mx-auto pb-10 pt-32  px-24 w-600 h-[510px] rounded-xl flex relative">
+        <span onclick=closeModalLoginSuggestion()
+            class="text-[#aaa] float-left text-[28px] font-bold top-0 left-3 cursor-pointer absolute">
+            &times;
+        </span>
+        <div class="w-full absolute top-0 left-0">
+            <div id="feed_back_modul_login"
+                class="mx-auto max-w-fit text-white bg-twitterblue px-6 py-4  rounded-md font-semibold  hidden">
+                <span onclick=closeModal()
+                    class="text-[#aaa] float-right text-[28px] font-bold top-0 left-3 cursor-pointer absolute">
+                    &times;
+                </span>
+                <div id="message" class="flex ml-2">
+                    <p class="mr-2 "></p>
+                    <p></p>
+                </div>
+
+            </div>
+        </div>
+        <section id="panel1" class="flex flex-col w-full items-center h-full">
+            <div class=" flex gap-2 justify-center xl:justify-start">
+                <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    class="r-1cvl2hr r-4qtqp9 r-yyyyoo r-h3s6tt r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-rwqe4o"
+                    width="48" height="48">
+                    <g fill="#1D9BF0">
+                        <path
+                            d="M10 4c-1.105 0-2 .9-2 2s.895 2 2 2 2-.9 2-2-.895-2-2-2zM6 6c0-2.21 1.791-4 4-4s4 1.79 4 4-1.791 4-4 4-4-1.79-4-4zm13 4v3h2v-3h3V8h-3V5h-2v3h-3v2h3zM3.651 19h12.698c-.337-1.8-1.023-3.21-1.945-4.19C13.318 13.65 11.838 13 10 13s-3.317.65-4.404 1.81c-.922.98-1.608 2.39-1.945 4.19zm.486-5.56C5.627 11.85 7.648 11 10 11s4.373.85 5.863 2.44c1.477 1.58 2.366 3.8 2.632 6.46l.11 1.1H1.395l.11-1.1c.266-2.66 1.155-4.88 2.632-6.46z"
+                            fill="#1D9BF0"></path>
+                    </g>
+                </svg>
+            </div>
+            <div>
+                <h1 class="text-white text-[26px] font-bold mt-8 leading-8">Follow Elon Musk to see what they share on
+                    Twitter.
+                </h1>
+                <p class="text-[#71767b]">Sign up so you never miss their Tweets.</p>
+            </div>
+
+            <div
+                class="flex flex-col [&>a]:rounded-full [&>a]:w-[400px] [&>a]:flex [&>a]:justify-center [&>a]:h-[52px]  [&>a]:items-center [&>a]:text-fif items-center w-fit cursor-pointer mt-auto">
+                <a onclick="notLoggedFollowModal()"
+                    class="font-bold text-white bg-[#1D9BF0] border border-gray-500/40 hover:bg[#108CD8] transition ease-in-out ">
+                    Login
+                </a>
+                <a href="/sign-up"
+                    class="font-bold text-[#1886D0] bg-black border border-gray-500/40 hover:bg-gray-300/10 transition ease-in-out mt-4">
+                    Sign up
+                </a>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- MODAL END -->
+<script src="../path/to/flowbite/dist/flowbite.min.js"></script>
+<script src="../js/follow.js"></script>

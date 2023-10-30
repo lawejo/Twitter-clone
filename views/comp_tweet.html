@@ -1,0 +1,815 @@
+<div class="border-t border-bordergray">
+    % if tweet['tweet_role'] == '2' and not tweet['tweet_message']:
+    <p class=" ml-[65px] flex items-center text-[13px] text-gray-500 font-bold">
+        <span class="mr-2">
+            <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                aria-hidden="true"
+                class="r-1bwzh9t r-4qtqp9 r-yyyyoo r-10ptun7 r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1janqcz" width="16"
+                height="16">
+                <g fill="#71767B">
+                    <path
+                        d="M4.75 3.79l4.603 4.3-1.706 1.82L6 8.38v7.37c0 .97.784 1.75 1.75 1.75H13V20H7.75c-2.347 0-4.25-1.9-4.25-4.25V8.38L1.853 9.91.147 8.09l4.603-4.3zm11.5 2.71H11V4h5.25c2.347 0 4.25 1.9 4.25 4.25v7.37l1.647-1.53 1.706 1.82-4.603 4.3-4.603-4.3 1.706-1.82L18 15.62V8.25c0-.97-.784-1.75-1.75-1.75z"
+                        fill="#71767B"></path>
+                </g>
+            </svg>
+        </span>
+        % if logged_user and logged_user['user_id'] == tweet['tweet_user_fk']:
+        <span class="mr-1">
+            You
+        </span>
+        % else:
+        <span class="mr-1">
+            {{tweet['user_username']}}
+        </span>
+        % end
+        Retweeted
+    </p>
+    % end
+
+
+
+
+
+
+    <!-- This changes the CSS to fit a repost (role=3) -->
+    % if tweet['tweet_role'] == '3':
+    <div class="w-contain" id="tweet">
+        % end
+        % if not tweet['tweet_role'] == '3':
+        <div class="w-contain flex" id="tweet">
+            % end
+            <!-- left -->
+
+            % if tweet['tweet_role'] == '3':
+            <div class="w-fit md:w-fit py-2 pl-2 items-center ml-2 grid grid-cols-[64px_minmax(486px,_1fr)]">
+                % end
+
+
+
+                % if not tweet['tweet_role'] == '3':
+                <div class=" flex flex-col w-fit md:w-fit p-2 items-center ml-2 mr-2 ">
+                    % end
+
+
+
+
+
+
+                    % if tweet['tweet_role'] == '3':
+                    <div class="flex flex-col items-center row-start-1 justify-self-center self-start h-full">
+                        <div
+                            class="w-[48px] min-h-[48px] tweet_img_parent overflow-hidden rounded-full flex col-start-1">
+
+                            <a href="{{tweet['reply_user_username']}}"
+                                class="w-full h-full flex justify-center items-center">
+                                % if tweet['reply_user_avatar']:
+                                <img src="../images/{{tweet['reply_user_avatar']}}" alt="" />
+                                % end
+                                % if not tweet['reply_user_avatar']:
+                                <img src="../images/default_avatar.png" alt="" />
+                                % end
+
+                            </a>
+
+                        </div>
+                        <!-- Gray borderline -->
+                        <div class="w-[1px] border border-bordergray bg-bordergray h-full mb-2">
+                        </div>
+                    </div>
+                    <div
+                        class="w-[48px] h-[48px] tweet_img_parent overflow-hidden rounded-full flex col-start-1 row-start-2 justify-self-center self-start">
+                        % end
+
+
+
+                        <!-- Avatars for all types of tweets -->
+
+                        <div
+                            class="w-[48px] h-[48px] tweet_img_parent overflow-hidden rounded-full flex justify-center">
+
+                            % if tweet['tweet_role'] == '1' and tweet['tweet_message'] or tweet['tweet_image']:
+                            <a href="{{tweet['user_username']}}" class="w-full h-full flex justify-center items-center">
+                                % if tweet['user_avatar']:
+                                <img src="../images/{{tweet['user_avatar']}}" alt="" />
+                                % end
+                                % if not tweet['user_avatar']:
+                                <img src="../images/default_avatar.png" alt="" />
+                                % end
+                            </a>
+                            % end
+                            % if tweet['tweet_role'] == '2' and not tweet['tweet_message']:
+                            <a href="{{tweet['retweet_user_username']}}"
+                                class="w-full h-full flex justify-center items-center">
+                                % if tweet['retweet_user_avatar']:
+                                <img src="../images/{{tweet['retweet_user_avatar']}}" alt="" />
+                                % end
+                                % if not tweet['retweet_user_avatar']:
+                                <img src="../images/default_avatar.png" alt="" />
+                                % end
+                            </a>
+                            % end
+                            % if tweet['tweet_role'] == '2' and tweet['tweet_message']:
+                            <a href="{{tweet['user_username']}}" class="w-full h-full flex justify-center items-center">
+                                % if tweet['user_avatar']:
+                                <img src="../images/{{tweet['user_avatar']}}" alt="" />
+                                % end
+                                % if not tweet['user_avatar']:
+                                <img src="../images/default_avatar.png" alt="" />
+                                % end
+
+                            </a>
+                            % end
+                            % if tweet['tweet_role'] == '3':
+                            <a href="{{tweet['user_username']}}" class="w-full h-full flex justify-center items-center">
+                                % if tweet['user_avatar']:
+                                <img src="../images/{{tweet['user_avatar']}}" alt="" />
+                                % end
+                                % if not tweet['user_avatar']:
+                                <img src="../images/default_avatar.png" alt="" />
+                                % end
+
+                            </a>
+                            % end
+                        </div>
+
+                    </div>
+                    <!-- right -->
+                    % if tweet['tweet_role'] == '3':
+
+                    <form id="tweet_message_form" class="w-full col-start-2 row-span-2">
+                        % end
+                        % if not tweet['tweet_role'] == '3':
+                        <form id="tweet_message_form" class="w-full">
+                            % end
+                            <div class="mt-4 md:mt-2 w-full grid">
+
+                                <!-- Tweet form w. message +  -->
+                                % if tweet['tweet_role'] == '1':
+                                <input style="display:none;" type="text" name="tweet_id" value="{{tweet['tweet_id']}}">
+                                % end
+
+
+
+                                % if tweet['tweet_role'] == '2':
+                                <input style="display:none;" type="text" name="tweet_id" value="{{tweet['tweet_id']}}">
+                                <input style="display:none;" type="text" name="message"
+                                    value="{{tweet['retweet_message']}}">
+
+                                % end
+
+
+
+                                % if tweet['tweet_role'] == '1' and tweet['tweet_message'] or tweet['tweet_image']:
+                                <!-- USER INFO for a normal tweet -->
+                                <div class="flex flex-col w-full">
+
+                                    <div class="flex mr-4">
+                                        <p class="flex  w-full text-fif font-semibold">
+                                            <a href="{{tweet['user_username']}}">
+                                                {{tweet['user_first_name']}}
+                                                % if tweet.get('user_last_name'):
+                                                {{tweet['user_last_name']}}
+                                                % end
+                                            </a>
+                                            <span class="flex items-center">
+
+                                                <span
+                                                    class="flex cursor-pointer font-semibold text-slate-200 text-base hover:underline underline-offset-2">
+                                                    % if tweet['user_total_followers'] >= 2:
+                                                    <span class="flex items-center pl-1 -mr-1">
+
+                                                        <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                            aria-label="Verified account" role="img"
+                                                            class="r-1cvl2hr r-4qtqp9 r-yyyyoo r-1xvli5t r-9cviqr r-f9ja8p r-og9te1 r-bnwqim r-1plcrui r-lrvibr"
+                                                            data-testid="icon-verified" width="20" height="20">
+                                                            <g fill="#1D9BF0">
+                                                                <path
+                                                                    d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"
+                                                                    fill="#1D9BF0"></path>
+                                                            </g>
+                                                        </svg>
+                                                    </span>
+                                                    % end
+                                                </span>
+
+                                                <a href="{{tweet['user_username']}}">
+                                                    <span class="text-sm flex items-center text-gray-500 ml-2">
+                                                        <strong>@</strong>
+                                                        {{tweet['user_username']}} <span class="mx-1">·</span>
+                                                        {{tweet['tweet_since_created']}}
+                                                    </span></a>
+
+                                            </span>
+                                        </p>
+                                        <!-- Include follow_tweet_follow -->
+                                        % include('comp_tweet_follow_delete')
+                                    </div>
+                                    <p class="flex flex-wrap text-base">
+                                        <span>{{tweet['tweet_message']}} </span>
+                                    </p>
+                                    % if tweet.get('tweet_image'):
+                                    <p class="w-full mt-2">
+                                        <img src="../images/{{tweet['tweet_image']}}" class="rounded-xl" alt=""
+                                            name="tweetIMG">
+                                    </p>
+                                    % end
+                                </div>
+                                % end
+
+
+                                % if tweet['tweet_role'] == '2' and not tweet['tweet_message']:
+                                <!-- USER INFO for when it is a retweet without a message -->
+                                <div class="flex flex-col w-full">
+
+                                    <div class="flex mr-4">
+                                        <p class="flex  w-full text-fif font-semibold">
+                                            <a href="{{tweet['retweet_user_username']}}">
+                                                {{tweet['retweet_user_first_name']}}
+                                                % if tweet.get('retweet_user_last_name'):
+                                                {{tweet['retweet_user_last_name']}}
+                                                % end
+                                            </a>
+                                            <span class="flex items-center">
+                                                % if tweet.get('retweet_user_total_followers'):
+
+                                                % if tweet['retweet_user_total_followers']:
+                                                % if tweet['retweet_user_total_followers'] >= 2:
+
+                                                <span
+                                                    class="flex cursor-pointer font-semibold text-slate-200 text-base hover:underline underline-offset-2">
+
+                                                    <span class="flex items-center pl-1 -mr-1">
+
+                                                        <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                            aria-label="Verified account" role="img"
+                                                            class="r-1cvl2hr r-4qtqp9 r-yyyyoo r-1xvli5t r-9cviqr r-f9ja8p r-og9te1 r-bnwqim r-1plcrui r-lrvibr"
+                                                            data-testid="icon-verified" width="20" height="20">
+                                                            <g fill="#1D9BF0">
+                                                                <path
+                                                                    d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"
+                                                                    fill="#1D9BF0"></path>
+                                                            </g>
+                                                        </svg>
+                                                    </span>
+
+                                                </span>
+                                                % end
+                                                % end
+                                                % end
+                                                <a href="{{tweet['retweet_user_username']}}"> <span
+                                                        class="text-sm flex items-center text-gray-500  ml-2">
+                                                        <strong>@</strong>
+                                                        {{tweet['retweet_user_username']}} <span class="mx-1">·</span>
+                                                        {{tweet['retweet_since_created']}}
+
+                                                    </span>
+                                                    <!-- Here i am -->
+                                                </a>
+
+                                            </span>
+                                        </p>
+                                        <!-- Include follow_tweet_follow -->
+                                        % include('comp_tweet_follow_delete')
+                                    </div>
+                                    <p class="flex flex-wrap text-base">
+                                        <span>{{tweet['retweet_message']}} </span>
+                                    </p>
+                                    % if tweet.get('retweet_image'):
+                                    <p class="w-full mt-2">
+                                        <img src="../images/{{tweet['retweet_image']}}" class="rounded-xl" alt=""
+                                            name="tweetIMG">
+                                    </p>
+                                    % end
+                                </div>
+
+                                <!-- If a retweeted tweet with a quote is retweeted without a quote -->
+                                % if tweet['retweet_role'] == '2':
+                                <div class="w-[505px] border border-bordergray rounded-lg text-white mt-4">
+                                    <div class="w-contain flex" id="tweet">
+
+
+                                        <!-- left -->
+                                        <!-- 8989 -->
+                                        <div class="flex flex-wrap mt-4 md:mt-2 w-full = h-full">
+                                            <!-- Tweet form w. message +  -->
+                                            <div class="flex flex-col w-full">
+
+                                                <div class="flex items-center ml-2 p-1">
+                                                    <div
+                                                        class="w-[20px] h-[20px] tweet_img_parent overflow-hidden rounded-full flex justify-center items-center mr-2">
+                                                        <a href="{{tweet['second_retweet_user_username']}}"
+                                                            class="w-full h-full flex justify-center items-center">
+                                                            % if tweet['second_retweet_user_avatar']:
+                                                            <img src="../images/{{tweet['second_retweet_user_avatar']}}"
+                                                                alt="" />
+                                                            % end
+                                                            % if not tweet['second_retweet_user_avatar']:
+                                                            <img src="../images/{{tweet['second_retweet_user_avatar']}}"
+                                                                alt="" />
+                                                            % end
+                                                        </a>
+                                                    </div>
+                                                    <p class="flex  w-full text-fif font-semibold">
+                                                        <a href="{{tweet['second_retweet_user_username']}}">
+
+                                                            {{tweet['second_retweet_user_first_name']}}
+
+                                                            {{tweet['second_retweet_user_last_name']}}
+
+                                                        </a>
+                                                        <span class="flex items-center">
+                                                            % if tweet['second_retweet_user_total_followers'] >= 2:
+                                                            <span
+                                                                class="flex cursor-pointer font-semibold text-slate-200 text-base hover:underline underline-offset-2">
+
+                                                                <span class="flex items-center px-1">
+
+                                                                    <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                        xmlns="http://www.w3.org/2000/svg"
+                                                                        viewBox="0 0 24 24"
+                                                                        aria-label="Verified account" role="img"
+                                                                        class="r-1cvl2hr r-4qtqp9 r-yyyyoo r-1xvli5t r-9cviqr r-f9ja8p r-og9te1 r-bnwqim r-1plcrui r-lrvibr"
+                                                                        data-testid="icon-verified" width="20"
+                                                                        height="20">
+                                                                        <g fill="#1D9BF0">
+                                                                            <path
+                                                                                d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"
+                                                                                fill="#1D9BF0"></path>
+                                                                        </g>
+                                                                    </svg>
+                                                                </span>
+                                                            </span>
+                                                            % end
+
+                                                            <a href="{{tweet['second_retweet_user_username']}}"> <span
+                                                                    class="text-sm flex items-center text-gray-500 ml-2">
+                                                                    <strong>@</strong>
+                                                                    {{tweet['second_retweet_user_username']}} <span
+                                                                        class="mx-1">·</span>
+                                                                    {{tweet['second_retweet_since_created']}}
+                                                                </span>
+                                                                <!-- 13579 -->
+                                                            </a>
+
+                                                        </span>
+
+                                                        <!-- Tweet modal / logged in user -->
+
+
+
+
+
+                                                </div>
+                                                </p>
+                                                <p class="flex flex-wrap text-base ml-2">
+                                                    <span>{{tweet['second_retweet_message']}} </span>
+
+                                                    % if tweet.get('third_retweet_user_username'):
+                                                    <span
+                                                        class="ml-1">twitter.com/{{tweet['third_retweet_user_username']}}/stat…
+                                                    </span>
+
+                                                    % elif tweet.get('second_retweet_user_username'):
+                                                    <!-- See if there is a ['tweet_message'] incase it is a retweet w/o quote of
+                                                    a retweet w.quote -->
+                                                    % if tweet['tweet_message']:
+                                                    <span
+                                                        class="ml-1">twitter.com/{{tweet['second_retweet_user_username']}}/stat…
+                                                    </span>
+                                                    % end
+                                                    % end
+
+                                                </p>
+                                                % if tweet.get('second_retweet_image'):
+                                                <p class="w-full mt-2">
+                                                    <img src="../images/{{tweet['retweet_image']}}" class="rounded-xl"
+                                                        alt="" name="tweetIMG">
+                                                </p>
+                                                % end
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                % end
+                                % end
+
+                                % if tweet['tweet_role'] == '2' and tweet['tweet_message']:
+                                <!-- USER INFO for when it is a retweet with a message -->
+                                <div class="flex flex-col w-full">
+
+                                    <div class="flex mr-4">
+                                        <p class="flex  w-full text-fif font-semibold">
+                                            <a href="{{tweet['user_username']}}">
+                                                {{tweet['user_first_name']}}
+                                                % if tweet.get('user_last_name'):
+                                                {{tweet['user_last_name']}}
+                                                % end
+                                            </a>
+                                            <span class="flex items-center">
+
+                                                <span
+                                                    class="flex cursor-pointer font-semibold text-slate-200 text-base hover:underline underline-offset-2">
+
+                                                    % if tweet['user_total_followers'] >= 2:
+                                                    <span class="flex items-center pl-1 -mr-1">
+
+                                                        <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                            aria-label="Verified account" role="img"
+                                                            class="r-1cvl2hr r-4qtqp9 r-yyyyoo r-1xvli5t r-9cviqr r-f9ja8p r-og9te1 r-bnwqim r-1plcrui r-lrvibr"
+                                                            data-testid="icon-verified" width="20" height="20">
+                                                            <g fill="#1D9BF0">
+                                                                <path
+                                                                    d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"
+                                                                    fill="#1D9BF0"></path>
+                                                            </g>
+                                                        </svg>
+                                                    </span>
+                                                </span>
+                                                % end
+                                                <a href="{{tweet['user_username']}}"> <span
+                                                        class="text-sm flex items-center text-gray-500 ml-2">
+                                                        <strong>@</strong>
+                                                        {{tweet['user_username']}} <span class="mx-1">·</span>
+                                                        {{tweet['tweet_since_created']}}
+                                                    </span>
+
+                                                </a>
+
+                                            </span>
+                                        </p>
+                                        <!-- Include follow_tweet_follow -->
+                                        % include('comp_tweet_follow_delete')
+                                    </div>
+                                    <p class="flex flex-wrap text-base">
+                                        <span>{{tweet['tweet_message']}} </span>
+                                    </p>
+                                    % if tweet.get('tweet_image'):
+                                    <p class="w-full mt-2">
+                                        <img src="../images/{{tweet['tweet_image']}}" class="rounded-xl" alt=""
+                                            name="tweetIMG">
+                                    </p>
+                                    % end
+                                </div>
+                                % end
+                                % if tweet['tweet_role'] == '3' and tweet['reply_message']:
+                                <!-- USER INFO for when it is tweet being replied -->
+                                % end
+                                % if tweet['tweet_role'] == '3':
+                                <!-- USER INFO for when it is a reply -->
+                                % end
+
+
+
+
+                        </form>
+
+
+
+
+                        % if tweet['tweet_message'] and tweet['tweet_role'] == '2':
+                        <!-- Retweeted message -->
+                        % if tweet['retweet_user_username'] == None:
+                        <div class="w-[505px] border border-bordergray rounded-xl text-[#71767B] mt-4 bg-[#16181C]">
+                            <p class="py-3 pl-3">This Tweet was deleted by the Tweet author. <a target="_blank"
+                                    class="text-twitterblue"
+                                    href="https://help.twitter.com/en/rules-and-policies/notices-on-twitter">Learn
+                                    more</a></p>
+                        </div>
+
+
+                        % else:
+                        <div class="w-[505px] border border-bordergray rounded-lg text-white mt-4">
+                            <div class="w-contain flex" id="tweet">
+                                <!-- left -->
+
+                                <!-- 2121 -->
+                                <div class="flex flex-wrap mt-4 md:mt-2 w-full = h-full">
+
+                                    <!-- Tweet form w. message +  -->
+
+
+                                    <div class="flex flex-col w-full">
+
+                                        <div class="flex items-center ml-2 p-1">
+                                            <div
+                                                class="w-[20px] h-[20px] tweet_img_parent overflow-hidden rounded-full flex justify-center items-center mr-2">
+                                                <a href="{{tweet['retweet_user_username']}}"
+                                                    class="w-full h-full flex justify-center items-center">
+                                                    % if tweet['retweet_user_avatar']:
+                                                    <img src="../images/{{tweet['retweet_user_avatar']}}" alt="" />
+                                                    % end
+                                                    % if not tweet['retweet_user_avatar']:
+                                                    <img src="../images/{{tweet['retweet_user_avatar']}}" alt="" />
+                                                    % end
+                                                </a>
+                                            </div>
+                                            <p class="flex  w-full text-fif font-semibold">
+                                                <a href="{{tweet['retweet_user_username']}}">
+                                                    {{tweet['retweet_user_first_name']}}
+                                                    % if tweet.get('retweet_user_last_name'):
+                                                    {{tweet['retweet_user_last_name']}}
+                                                    % end
+                                                </a>
+                                                <span class="flex items-center  pl-1">
+                                                    % if tweet['retweet_user_total_followers'] >= 2:
+                                                    <span
+                                                        class="flex cursor-pointer font-semibold text-slate-200 text-base hover:underline underline-offset-2 ">
+
+                                                        <span class="flex items-center px-1">
+
+                                                            <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                                aria-label="Verified account" role="img"
+                                                                class="r-1cvl2hr r-4qtqp9 r-yyyyoo r-1xvli5t r-9cviqr r-f9ja8p r-og9te1 r-bnwqim r-1plcrui r-lrvibr"
+                                                                data-testid="icon-verified" width="20" height="20">
+                                                                <g fill="#1D9BF0">
+                                                                    <path
+                                                                        d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"
+                                                                        fill="#1D9BF0"></path>
+                                                                </g>
+                                                            </svg>
+                                                        </span>
+                                                    </span>
+                                                    % end
+                                                    <a href="{{tweet['retweet_user_username']}}"> <span
+                                                            class="text-sm flex items-center text-gray-500">
+                                                            <strong>@</strong>
+                                                            {{tweet['retweet_user_username']}} <span
+                                                                class="mx-1">·</span>
+                                                            {{tweet['retweet_since_created']}}
+                                                        </span>
+                                                        <!-- 13579 -->
+                                                    </a>
+
+                                                </span>
+
+                                                <!-- Tweet modal / logged in user -->
+
+
+
+
+
+                                        </div>
+                                        </p>
+                                        <p class="flex flex-wrap text-base ml-2">
+                                            <span>{{tweet['retweet_message']}} </span>
+                                            <!-- aqui 2-->
+                                            % if tweet.get('second_retweet_user_username'):
+                                            <span
+                                                class="ml-1">twitter.com/{{tweet['second_retweet_user_username']}}/stat…</span>
+                                            % end
+
+                                        </p>
+                                        % if tweet.get('retweet_image'):
+                                        <p class="w-full mt-2">
+                                            <img src="../images/{{tweet['retweet_image']}}" class="rounded-xl" alt=""
+                                                name="tweetIMG">
+                                        </p>
+                                        % end
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                        % end
+                        % end
+
+
+
+
+
+
+
+                        % if tweet['tweet_role'] == '3':
+                        <!-- Original message -->
+                        <div class="flex flex-col w-full ">
+
+                            <div class="flex mr-4">
+                                <p class="flex  w-full text-fif font-semibold">
+                                    <a href="{{tweet['reply_user_username']}}">
+                                        {{tweet['reply_user_first_name']}}
+                                        % if tweet.get('reply_user_last_name'):
+                                        {{tweet['reply_user_last_name']}}
+                                        % end
+                                    </a>
+                                    <span class="flex items-center">
+
+                                        <span
+                                            class="flex cursor-pointer font-semibold text-slate-200 text-base hover:underline underline-offset-2">
+                                            % if tweet['reply_user_total_followers'] >= 2:
+                                            <span class="flex items-center pl-1 -mr-1">
+
+                                                <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    aria-label="Verified account" role="img"
+                                                    class="r-1cvl2hr r-4qtqp9 r-yyyyoo r-1xvli5t r-9cviqr r-f9ja8p r-og9te1 r-bnwqim r-1plcrui r-lrvibr"
+                                                    data-testid="icon-verified" width="20" height="20">
+                                                    <g fill="#1D9BF0">
+                                                        <path
+                                                            d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"
+                                                            fill="#1D9BF0"></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            % end
+                                        </span>
+
+                                        <a href="{{tweet['reply_user_username']}}">
+                                            <span class="text-sm flex items-center text-gray-500 ml-2">
+                                                <strong>@</strong>
+                                                {{tweet['reply_user_username']}} <span class="mx-1">·</span>
+                                                {{tweet['reply_since_created']}}
+                                            </span></a>
+
+                                    </span>
+                                </p>
+                                <!-- Include follow_tweet_follow -->
+                                % include('comp_tweet_follow_delete')
+                            </div>
+                            <p class="flex flex-wrap text-base">
+                                <span>{{tweet['reply_message']}} </span>
+                            </p>
+                            % if tweet.get('tweet_image'):
+                            <p class="w-full mt-2">
+                                <img src="../images/{{tweet['tweet_image']}}" class="rounded-xl" alt="" name="tweetIMG">
+                            </p>
+                            % end
+                        </div>
+                        <!-- Icons -->
+                        <div class="flex w-full justify-between lg:-ml-2 mt-2 text-gray-700 lg:pr-6 pb-2 items-center">
+
+                            <!-- comp_reply -->
+                            % include('comp_reply')
+
+                            <!-- comp_retweet -->
+                            % include('comp_retweet')
+                            <!-- comp_liketweet -->
+                            % include('comp_liketweet')
+
+                            <div class="hidden sm:flex items-center cursor-pointer group">
+                                <span class="group-hover:bg-twitterblue/[0.15] transition ease-in-out rounded-full p-2">
+                                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24" strok aria-hidden="true"
+                                        class="fill-gray-500 group-hover:fill-bg-twitterblue transition ease-in-out r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1hdv0qi"
+                                        width="20" height="20">
+                                        <g>
+                                            <path
+                                                d="M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </span>
+                                <span
+                                    class="pl-2 text-sm text-gray-500 group-hover:text-bg-twitterblue transition ease-in-out">3.4M</span>
+                            </div>
+                            <div class="flex items-center cursor-pointer group">
+                                <span class="group-hover:bg-twitterblue/[0.15] transition ease-in-out rounded-full p-2">
+                                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24" aria-hidden="true"
+                                        class="fill-gray-500 group-hover:fill-bg-twitterblue transition ease-in-out r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1hdv0qi"
+                                        width="20" height="20">
+                                        <g>
+                                            <path
+                                                d="M12 2.59l5.7 5.7-1.41 1.42L13 6.41V16h-2V6.41l-3.3 3.3-1.41-1.42L12 2.59zM21 15l-.02 3.51c0 1.38-1.12 2.49-2.5 2.49H5.5C4.11 21 3 19.88 3 18.5V15h2v3.5c0 .28.22.5.5.5h12.98c.28 0 .5-.22.5-.5L19 15h2z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                        % end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        % if tweet['tweet_role'] == '3':
+                        <!-- Replied message -->
+                        <div class="flex flex-col w-full">
+
+                            <div class="flex mr-4">
+                                <p class="flex  w-full text-fif font-semibold">
+                                    <a href="{{tweet['user_username']}}">
+                                        {{tweet['user_first_name']}}
+                                        % if tweet.get('user_last_name'):
+                                        {{tweet['user_last_name']}}
+                                        % end
+                                    </a>
+                                    <span class="flex items-center">
+
+                                        <span
+                                            class="flex cursor-pointer font-semibold text-slate-200 text-base hover:underline underline-offset-2">
+                                            % if tweet['user_total_followers'] >= 2:
+                                            <span class="flex items-center pl-1 -mr-1">
+
+                                                <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    aria-label="Verified account" role="img"
+                                                    class="r-1cvl2hr r-4qtqp9 r-yyyyoo r-1xvli5t r-9cviqr r-f9ja8p r-og9te1 r-bnwqim r-1plcrui r-lrvibr"
+                                                    data-testid="icon-verified" width="20" height="20">
+                                                    <g fill="#1D9BF0">
+                                                        <path
+                                                            d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91s-2.52-1.27-3.91-.81c-.66-1.31-1.91-2.19-3.34-2.19s-2.67.88-3.33 2.19c-1.4-.46-2.91-.2-3.92.81s-1.26 2.52-.8 3.91c-1.31.67-2.2 1.91-2.2 3.34s.89 2.67 2.2 3.34c-.46 1.39-.21 2.9.8 3.91s2.52 1.26 3.91.81c.67 1.31 1.91 2.19 3.34 2.19s2.68-.88 3.34-2.19c1.39.45 2.9.2 3.91-.81s1.27-2.52.81-3.91c1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"
+                                                            fill="#1D9BF0"></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            % end
+                                        </span>
+
+                                        <a href="{{tweet['user_username']}}">
+                                            <span class="text-sm flex items-center text-gray-500 ml-2">
+                                                <strong>@</strong>
+                                                {{tweet['user_username']}} <span class="mx-1">·</span>
+                                                {{tweet['tweet_since_created']}}
+                                            </span></a>
+
+                                    </span>
+                                </p>
+                                <!-- Include follow_tweet_follow -->
+                                % include('comp_tweet_follow_delete')
+                            </div>
+                            <p class="flex flex-wrap text-base">
+                                <span>{{tweet['tweet_message']}} </span>
+                            </p>
+                            % if tweet.get('tweet_image'):
+                            <p class="w-full mt-2">
+                                <img src="../images/{{tweet['tweet_image']}}" class="rounded-xl" alt="" name="tweetIMG">
+                            </p>
+                            % end
+                        </div>
+                        % end
+
+                        <!-- Icons -->
+                        <div class="flex w-full justify-between lg:-ml-2 mt-2 text-gray-700 lg:pr-6 pb-2 items-center">
+
+                            <!-- comp_reply -->
+                            % include('comp_reply')
+
+                            <!-- comp_retweet -->
+                            % include('comp_retweet')
+                            <!-- comp_liketweet -->
+                            % include('comp_liketweet')
+
+                            <div class="hidden sm:flex items-center cursor-pointer group">
+                                <span class="group-hover:bg-twitterblue/[0.15] transition ease-in-out rounded-full p-2">
+                                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24" strok aria-hidden="true"
+                                        class="fill-gray-500 group-hover:fill-bg-twitterblue transition ease-in-out r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1hdv0qi"
+                                        width="20" height="20">
+                                        <g>
+                                            <path
+                                                d="M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </span>
+                                <span
+                                    class="pl-2 text-sm text-gray-500 group-hover:text-bg-twitterblue transition ease-in-out">3.4M</span>
+                            </div>
+                            <div class="flex items-center cursor-pointer group">
+                                <span class="group-hover:bg-twitterblue/[0.15] transition ease-in-out rounded-full p-2">
+                                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24" aria-hidden="true"
+                                        class="fill-gray-500 group-hover:fill-bg-twitterblue transition ease-in-out r-4qtqp9 r-yyyyoo r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1hdv0qi"
+                                        width="20" height="20">
+                                        <g>
+                                            <path
+                                                d="M12 2.59l5.7 5.7-1.41 1.42L13 6.41V16h-2V6.41l-3.3 3.3-1.41-1.42L12 2.59zM21 15l-.02 3.51c0 1.38-1.12 2.49-2.5 2.49H5.5C4.11 21 3 19.88 3 18.5V15h2v3.5c0 .28.22.5.5.5h12.98c.28 0 .5-.22.5-.5L19 15h2z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                </div>
+
+
+            </div>
+        </div>

@@ -1,0 +1,198 @@
+<button onclick="handleModalEdit(); return false"
+    class="hover:bg-[rgba(239,243,244,0.1)]/[.15]  transition ease-out ml-auto w-[115px] h-[36px] bg-inherit text-white rounded-full font-semibold text-[15px] border-2 border-bordergray px-4">Edit
+    profile</button>
+<div id="editModalOverlay"
+    class="hidden transition ease-in-out fixed z-50 left-0 top-0 w-full h-full overflow-auto bg-gray-700/60">
+    %include('comp_discard_changes')
+    <div class="bg-black my-[45px] mx-auto w-600 h-[630px] rounded-xl flex flex-col relative transition ease-in-out">
+        <div class="w-full absolute top-0 left-0 z-1050">
+            <!-- HERE -->
+            <div id="feed_back_modul_edit_profile"
+                class="mx-auto max-w-fit text-white bg-twitterblue px-6 py-4  rounded-md font-semibold  hidden">
+                <span onclick=closeModalEdit()
+                    class="text-[#aaa] float-right text-[28px] font-bold top-0 left-3 cursor-pointer absolute">
+                    &times;
+                </span>
+                <div id="messageEdit" class="flex ml-2">
+                    <p class="mr-2 "></p>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+        <!-- Top tow (Close, "Edit profile", Save) -->
+        <div class="grid grid-cols-2 self-start min-w-[600px] pt-3 px-3">
+            <div class="self-center flex">
+                <button onclick="handleModalEdit(); return false" class="min-w-fit" id="closeEditModal">
+                    <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24" aria-hidden="true"
+                        class="r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03"
+                        style="color: rgb(239, 243, 244);" width="24" height="24">
+                        <g fill="#EFF3F4">
+                            <path
+                                d="M10.59 12L4.54 5.96l1.42-1.42L12 10.59l6.04-6.05 1.42 1.42L13.41 12l6.05 6.04-1.42 1.42L12 13.41l-6.04 6.05-1.42-1.42L10.59 12z"
+                                fill="#EFF3F4"></path>
+                        </g>
+                    </svg>
+
+                </button>
+                <h3 class="font-bold text-[20px] ml-6">Edit profile</h3>
+            </div>
+            <div class="justify-self-end flex w-full">
+                % include('comp_delete_acc_modal')
+                <button class="bg-[#f500005e]/[.15] text-[#f4212e] border-[#67070f] 
+                    transition ease-out ml-auto mr-4 w-fit h-[36px] bg-inherit rounded-full font-semibold text-[15px] 
+                    border-2 px-2" onclick="deleteAccChangesModal(); return false">
+                    Delete User
+
+                </button>
+                <button
+                    class="transition ease-out min-w-[64px] h-[32px] bg-[#f5f7f8] hover:bg-[#d4d4d4] text-black rounded-full font-semibold text-[15px]"
+                    onclick="editUserInfo(); return false">
+                    Save
+                </button>
+            </div>
+
+        </div>
+        <section class="flex flex-col w-full items-center mt-2">
+            <form id="edit_user_info_form" class="w-full">
+                <div class="border-t border-bordergray grid grid-rows-5 grid-cols-1">
+
+                    <div class="w-full grid grid-rows-1 grid-cols-1 row-start-1 row-span-full col-start-1">
+                        <div class="bg-black/30 w-[600px] z-10 row-start-1 col-start-1"></div>
+                        <div class="row-start-1 col-start-1">
+                            <figure class="h-[198px] -z-10 overflow-y-hidden flex items-center  justify-center">
+                                <input style="display:none;" type="text" name="edit_cover_img"
+                                    value="images/{{user['user_cover_image']}}">
+                                % if user['user_cover_image']:
+                                <img src="../images/{{user['user_cover_image']}}" id="editCoverImg" alt=""
+                                    class="row-start-1 col-start-1">
+                                % end
+                                % if not user['user_cover_image']:
+                                <img src="../images/default_cover.png" id="editCoverImg" alt=""
+                                    class="row-start-1 col-start-1">
+                                % end
+                            </figure>
+                            <!-- Add photo profile -->
+                            <div
+                                class="flex justify-center items-center w-[120px] h-[120px] -mt-[72.5px] ml-[18px] bg-[#000]  relative rounded-full">
+                                <figure
+                                    class=" w-[113px] h-[113px] rounded-full grid grid-cols-1 grid-rows-1 justify-center items-center  overflow-hidden">
+
+
+                                    % if user['user_avatar']:
+                                    <img class="row-start-1 col-start-1 self-center justify-self-center "
+                                        src="../images/{{user['user_avatar']}}" alt="" id="editProfileImg">
+                                    % end
+                                    % if not user['user_avatar']:
+                                    <img class="row-start-1 col-start-1 self-center justify-self-center "
+                                        src="../images/default_avatar.png" alt="" id="editProfileImg">
+                                    % end
+
+
+
+                                    <div id="addPhotoProfile" onmouseout="removeHint()" onmouseover="showHint()"
+                                        class="row-start-1 col-start-1 self-center justify-self-center z-20 bg-black/50 p-3  rounded-full cursor-pointer hover:bg-fadedhover/50 transition ease-in-out relative">
+                                        <label for="profile_file" class="cursor-pointer">
+                                            <svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                aria-hidden="true"
+                                                class="pointer-events-none r-4qtqp9 r-yyyyoo r-18yzcnr r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-yc9v9c"
+                                                style="color: rgb(255, 255, 255);" width="24" height="24">
+                                                <g fill="#FFFFFF">
+                                                    <path
+                                                        d="M9.697 3H11v2h-.697l-3 2H5c-.276 0-.5.224-.5.5v11c0 .276.224.5.5.5h14c.276 0 .5-.224.5-.5V10h2v8.5c0 1.381-1.119 2.5-2.5 2.5H5c-1.381 0-2.5-1.119-2.5-2.5v-11C2.5 6.119 3.619 5 5 5h1.697l3-2zM12 10.5c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zm-4 2c0-2.209 1.791-4 4-4s4 1.791 4 4-1.791 4-4 4-4-1.791-4-4zM17 2c0 1.657-1.343 3-3 3v1c1.657 0 3 1.343 3 3h1c0-1.657 1.343-3 3-3V5c-1.657 0-3-1.343-3-3h-1z"
+                                                        fill="#FFFFFF"></path>
+                                                </g>
+                                            </svg>
+                                        </label>
+                                        <input id="profile_file" type="file" name="profile_file" class="hidden"
+                                            onchange="handleEditUpload(event)">
+
+                                        <div id="hintAddPhotoProfile"
+                                            class="hidden absolute top-[20%] right-[-20%] mt-10 bg-[#4d5d6c] p-[4px] rounded-sm">
+                                            <p class=" text-[12px] whitespace-nowrap font-semibold">Add photo</p>
+                                        </div>
+                                    </div>
+                                </figure>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Icons -->
+                    <div
+                        class="row-start-3 row-span-1 col-start-1 z-20 justify-self-center self-center flex min-h-fit [&>div]:bg-black/50 [&>div]:p-3 [&>div]:rounded-full [&>div]:cursor-pointer ">
+
+                        <!-- Add photo coverImage -->
+                        <div class="mr-4 hover:bg-fadedhover/50 transition ease-in-out relative"
+                            onmouseout="removeHint()" onmouseover="showHint()" id="addPhoto">
+                            <label for="cover_file" class="cursor-pointer">
+                                <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" aria-hidden="true"
+                                    class="pointer-events-none r-4qtqp9 r-yyyyoo r-18yzcnr r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-yc9v9c"
+                                    style="color: rgb(255, 255, 255);" width="24" height="24">
+                                    <g fill="#FFFFFF">
+                                        <path
+                                            d="M9.697 3H11v2h-.697l-3 2H5c-.276 0-.5.224-.5.5v11c0 .276.224.5.5.5h14c.276 0 .5-.224.5-.5V10h2v8.5c0 1.381-1.119 2.5-2.5 2.5H5c-1.381 0-2.5-1.119-2.5-2.5v-11C2.5 6.119 3.619 5 5 5h1.697l3-2zM12 10.5c-1.105 0-2 .895-2 2s.895 2 2 2 2-.895 2-2-.895-2-2-2zm-4 2c0-2.209 1.791-4 4-4s4 1.791 4 4-1.791 4-4 4-4-1.791-4-4zM17 2c0 1.657-1.343 3-3 3v1c1.657 0 3 1.343 3 3h1c0-1.657 1.343-3 3-3V5c-1.657 0-3-1.343-3-3h-1z"
+                                            fill="#FFFFFF">
+                                        </path>
+                                    </g>
+                                </svg>
+                                <input id="cover_file" type="file" value="{{user['user_cover_image']}}"
+                                    name="cover_file" class="hidden" onchange="handleEditUpload(event)">
+
+                            </label>
+                            <div id="hintAddPhotoCover"
+                                class="hidden absolute top-[20%] right-[-20%] mt-10 bg-[#4d5d6c] p-[4px] rounded-sm">
+                                <p class=" text-[12px] whitespace-nowrap font-semibold">Add photo</p>
+                            </div>
+                        </div>
+                        % if not user['user_cover_image']:
+                        <!-- Remove photo cover image -->
+                        <div class="hover:bg-fadedhover/50 transition ease-in-out relative" onmouseout="removeHint()"
+                            onmouseover="showHint()" onclick="removePreviewCover()" id="removePhoto">
+                            <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24" aria-hidden="true"
+                                class="pointer-events-none r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03"
+                                style="color: rgb(239, 243, 244);" width="24" height="24">
+                                <g fill="#EFF3F4">
+                                    <path
+                                        d="M10.59 12L4.54 5.96l1.42-1.42L12 10.59l6.04-6.05 1.42 1.42L13.41 12l6.05 6.04-1.42 1.42L12 13.41l-6.04 6.05-1.42-1.42L10.59 12z"
+                                        fill="#EFF3F4"></path>
+                                </g>
+                            </svg>
+                            <div id="hintDeleteCover"
+                                class="hidden absolute top-[20%] right-[-50%] mt-10 bg-[#4d5d6c] p-[4px] rounded-sm">
+                                <p class=" text-[12px] whitespace-nowrap font-semibold">Remove photo</p>
+                            </div>
+                        </div>
+                        % end
+                    </div>
+                </div>
+                <div
+                    class="flex flex-col w-full items-center [&>input]:w-[95%] [&>input]:bg-black [&>input]:rounded-md [&>input]:mt-4">
+                    <label for="user_firstname"></label>
+                    <input id="user_firstname" placeholder="First name" value="{{logged_user['user_first_name']}}"
+                        name="user_firstname" type="text" required>
+                    <label for="user_lastname"></label>
+                    <input id="user_lastname" placeholder="Last name" value="{{logged_user['user_last_name']}}"
+                        name="user_lastname" type="text" required>
+                    <label for="user_description"></label>
+                    <input id="user_description" placeholder="Bio" value="{{logged_user['user_description']}}"
+                        name="user_description" type="text" required>
+                    <label for="user_geo_location"></label>
+                    <input id="user_geo_location" placeholder="Location" value="{{logged_user['user_geo_location']}}"
+                        name="user_geo_location" type="text" required>
+                    <label for="user_website"></label>
+                    <input id="user_website" placeholder="Website" value="{{logged_user['user_website']}}"
+                        name="user_website" type="text" required>
+
+                </div>
+            </form>
+
+
+        </section>
+
+    </div>
+</div>

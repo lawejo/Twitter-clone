@@ -1,0 +1,176 @@
+<div class="relative">
+    <input style="display:none;" type="text" name="retweet_fk" value="{{tweet['tweet_id']}}"
+        data-username="{{tweet['user_username']}}">
+    % if logged_user:
+    <button class="flex items-center cursor-pointer group transition ease-in-out"
+        onclick="handlRetweetModal(); return false">
+
+        <!-- Logged users retweet icon if it is a retweet -->
+        % if tweet['tweet_user_fk'] == logged_user['user_id'] and tweet['tweet_role'] == '2':
+        <span class="group-hover:bg-[#00BA7C]/[0.15] transition ease-in-out rounded-full p-2 pointer-events-none">
+            <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                aria-hidden="true"
+                class="pointer-events-none fill-[#00BA7C] group-hover:fill-[#00BA7C] transition ease-in-out r-1bwzh9t r-4qtqp9 r-yyyyoo r-10ptun7 r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1janqcz"
+                width="20" height="20">
+                <g>
+                    <path
+                        d="M4.75 3.79l4.603 4.3-1.706 1.82L6 8.38v7.37c0 .97.784 1.75 1.75 1.75H13V20H7.75c-2.347 0-4.25-1.9-4.25-4.25V8.38L1.853 9.91.147 8.09l4.603-4.3zm11.5 2.71H11V4h5.25c2.347 0 4.25 1.9 4.25 4.25v7.37l1.647-1.53 1.706 1.82-4.603 4.3-4.603-4.3 1.706-1.82L18 15.62V8.25c0-.97-.784-1.75-1.75-1.75z">
+                    </path>
+                </g>
+            </svg>
+        </span>
+        % end
+        <!-- Unlogged users retweet icon / standard grey -->
+        % if not tweet['tweet_user_fk'] == logged_user['user_id']:
+        <span class="group-hover:bg-[#00BA7C]/[0.15] transition ease-in-out rounded-full p-2 pointer-events-none">
+            <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                aria-hidden="true"
+                class="pointer-events-none fill-gray-500 group-hover:fill-[#00BA7C] transition ease-in-out r-1bwzh9t r-4qtqp9 r-yyyyoo r-10ptun7 r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1janqcz"
+                width="20" height="20">
+                <g>
+                    <path
+                        d="M4.75 3.79l4.603 4.3-1.706 1.82L6 8.38v7.37c0 .97.784 1.75 1.75 1.75H13V20H7.75c-2.347 0-4.25-1.9-4.25-4.25V8.38L1.853 9.91.147 8.09l4.603-4.3zm11.5 2.71H11V4h5.25c2.347 0 4.25 1.9 4.25 4.25v7.37l1.647-1.53 1.706 1.82-4.603 4.3-4.603-4.3 1.706-1.82L18 15.62V8.25c0-.97-.784-1.75-1.75-1.75z">
+                    </path>
+                </g>
+            </svg>
+        </span>
+        % end
+        <!-- Logged users retweet icon, but it is not a retweet (reply) -->
+        % if tweet['tweet_user_fk'] == logged_user['user_id'] and tweet['tweet_role'] == '3':
+        <span class="group-hover:bg-[#00BA7C]/[0.15] transition ease-in-out rounded-full p-2 pointer-events-none">
+            <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                aria-hidden="true"
+                class="pointer-events-none fill-gray-500 group-hover:fill-[#00BA7C] transition ease-in-out r-1bwzh9t r-4qtqp9 r-yyyyoo r-10ptun7 r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1janqcz"
+                width="20" height="20">
+                <g>
+                    <path
+                        d="M4.75 3.79l4.603 4.3-1.706 1.82L6 8.38v7.37c0 .97.784 1.75 1.75 1.75H13V20H7.75c-2.347 0-4.25-1.9-4.25-4.25V8.38L1.853 9.91.147 8.09l4.603-4.3zm11.5 2.71H11V4h5.25c2.347 0 4.25 1.9 4.25 4.25v7.37l1.647-1.53 1.706 1.82-4.603 4.3-4.603-4.3 1.706-1.82L18 15.62V8.25c0-.97-.784-1.75-1.75-1.75z">
+                    </path>
+                </g>
+            </svg>
+        </span>
+        % end
+        <!-- Logged user but it is a standard tweet -->
+        % if tweet['tweet_user_fk'] == logged_user['user_id'] and tweet['tweet_role'] == '1':
+        <span class="group-hover:bg-[#00BA7C]/[0.15] transition ease-in-out rounded-full p-2 pointer-events-none">
+            <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                aria-hidden="true"
+                class="pointer-events-none fill-gray-500 group-hover:fill-[#00BA7C] transition ease-in-out r-1bwzh9t r-4qtqp9 r-yyyyoo r-10ptun7 r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1janqcz"
+                width="20" height="20">
+                <g>
+                    <path
+                        d="M4.75 3.79l4.603 4.3-1.706 1.82L6 8.38v7.37c0 .97.784 1.75 1.75 1.75H13V20H7.75c-2.347 0-4.25-1.9-4.25-4.25V8.38L1.853 9.91.147 8.09l4.603-4.3zm11.5 2.71H11V4h5.25c2.347 0 4.25 1.9 4.25 4.25v7.37l1.647-1.53 1.706 1.82-4.603 4.3-4.603-4.3 1.706-1.82L18 15.62V8.25c0-.97-.784-1.75-1.75-1.75z">
+                    </path>
+                </g>
+            </svg>
+        </span>
+        % end
+
+        % if not tweet['tweet_user_fk'] == logged_user['user_id'] and tweet['tweet_role'] == '2':
+        <span
+            class="text-sm text-gray-500 group-hover:text-emerald-500 transition ease-in-out pointer-events-none">{{tweet['retweet_total_retweets']}}
+        </span>
+        % end
+
+
+        % if tweet['tweet_user_fk'] == logged_user['user_id'] and tweet['tweet_role'] == '2':
+        <span
+            class="text-sm text-[#00BA7C] group-hover:text-emerald-500 transition ease-in-out pointer-events-none">{{tweet['retweet_total_retweets']}}
+        </span>
+        % end
+        % if tweet['tweet_user_fk'] == logged_user['user_id'] and tweet['tweet_role'] == '3':
+        <span
+            class="text-sm text-gray-500 group-hover:text-emerald-500 transition ease-in-out pointer-events-none">{{tweet['tweet_total_retweets']}}
+        </span>
+        % end
+
+
+
+        % if tweet['tweet_role'] == '1':
+        <span
+            class="text-sm text-gray-500 group-hover:text-emerald-500 transition ease-in-out pointer-events-none">{{tweet['tweet_total_retweets']}}
+        </span>
+        % end
+        % end
+        % if not logged_user:
+
+        <span
+            class="group-hover:bg-[#00BA7C]/[0.15] transition ease-in-out rounded-full p-2 pointer-events-none flex items-center">
+            <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                aria-hidden="true"
+                class="pointer-events-none fill-gray-500 group-hover:fill-[#00BA7C] transition ease-in-out r-1bwzh9t r-4qtqp9 r-yyyyoo r-10ptun7 r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-1janqcz"
+                width="20" height="20">
+                <g>
+                    <path
+                        d="M4.75 3.79l4.603 4.3-1.706 1.82L6 8.38v7.37c0 .97.784 1.75 1.75 1.75H13V20H7.75c-2.347 0-4.25-1.9-4.25-4.25V8.38L1.853 9.91.147 8.09l4.603-4.3zm11.5 2.71H11V4h5.25c2.347 0 4.25 1.9 4.25 4.25v7.37l1.647-1.53 1.706 1.82-4.603 4.3-4.603-4.3 1.706-1.82L18 15.62V8.25c0-.97-.784-1.75-1.75-1.75z">
+                    </path>
+                </g>
+            </svg>
+            <span
+                class="text-sm text-gray-500 group-hover:text-emerald-500 transition ease-in-out pointer-events-none  ml-2">{{tweet['tweet_total_retweets']}}
+            </span>
+        </span>
+
+        % end
+    </button>
+    <div
+        class="retweetModal absolute top-0 right-0 w-[155px] h-[88px] bg-black flex flex-col justify-center items-center text-white shadow-[0_0px_15px_1px_rgba(255,255,255,0.3)] rounded-xl [&>*]:flex [&>*]:w-full [&>*]:px-2 py-2 [&>*]:font-semibold hidden">
+        <form onsubmit="tweet(); return false">
+
+
+            % if tweet['tweet_role'] == '2' and tweet['tweet_message']:
+            <!-- Retweet with a message -->
+            <input style="display:none;" type="text" name="retweet_fk" value="{{tweet['tweet_id']}}"
+                data-username="{{tweet['user_username']}}">
+
+            % end
+
+            % if tweet['tweet_role'] == '2' and not tweet['tweet_message']:
+            <!-- Retweet without a message -->
+            <input style="display:none;" type="text" name="retweet_fk" value="{{tweet['retweet_id']}}"
+                data-username="{{tweet['user_username']}}">
+            % end
+
+            % if not tweet['tweet_role'] == '2':
+            <!-- Normal tweet| -->
+            <input style="display:none;" type="text" name="retweet_fk" value="{{tweet['tweet_id']}}"
+                data-username="{{tweet['user_username']}}">
+            % end
+
+            <button class=" flex"><span class="mr-4"><svg xmlns:xlink="http://www.w3.org/1999/xlink"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"
+                        class="r-1nao33i r-4qtqp9 r-yyyyoo r-1q142lx  r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr"
+                        width="24" height="24">
+                        <g fill="#E7E9EA">
+                            <path
+                                d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"
+                                fill="#E7E9EA"></path>
+                        </g>
+                    </svg>
+                </span> Retweet
+            </button>
+        </form>
+        <p class="mt-auto cursor-pointer" onclick="quoteRetweet()">
+            <span class="mr-4 pointer-events-none">
+                <svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    class="r-1nao33i r-4qtqp9 r-yyyyoo r-1q142lx r-1xvli5t r-dnmrzs r-bnwqim r-1plcrui r-lrvibr"
+                    width="24" height="24">
+                    <g fill="#E7E9EA">
+                        <path
+                            d="M14.23 2.854c.98-.977 2.56-.977 3.54 0l3.38 3.378c.97.977.97 2.559 0 3.536L9.91 21H3v-6.914L14.23 2.854zm2.12 1.414c-.19-.195-.51-.195-.7 0L5 14.914V19h4.09L19.73 8.354c.2-.196.2-.512 0-.708l-3.38-3.378zM14.75 19l-2 2H21v-2h-6.25z"
+                            fill="#E7E9EA"></path>
+                    </g>
+                </svg>
+            </span>
+            Quote Tweet
+        </p>
+    </div>
+    <div class="hidden fixed  top-0 left-0 w-full h-full bg-white opacity-0 z-1000" data-name="overlay"
+        onclick="handleOverlayRetweet(); return false">
+    </div>
+    % if logged_user:
+    % include('comp_retweet_quote')
+    % end
+
+</div>

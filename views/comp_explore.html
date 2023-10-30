@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/output.css" />
+
+    <title>Document</title>
+</head>
+
+<body class="[&>*]box-border w-full h-full  overflow-y-scroll bg-black text-white">
+
+    %include('comp_left')
+    <section class="flex mr-auto">
+
+        <div class="h-fit max-w-[600px] lg:col-start-1  border-x border-bordergray">
+            <h1 class="text-[20px] font-bold ml-4">Explore</h1>
+            % for tweet in tweets:
+            %include('comp_tweet')
+            % end
+        </div>
+        <div class="hidden lg:col-start-2 lg:block lg:w-[350px] lg:ml-[20px] xl:w-[350px] mr-[15px]">
+            % if logged_user:
+
+            <!-- Search Twitter -->
+            %include('comp_searchbar')
+            % end
+            <!-- Who to follow -->
+            <div id="targetArea">
+                <!-- targetarea -->
+                % if logged_user:
+
+                <div class=" bg-[#16181C] rounded-xl my-4">
+                    <p class="font-bold text-2xl py-2 px-4">Relevant people
+                    </p>
+                    % for user_suggestion in is_followed_suggestion_after:
+                    <div class="flex items-center px-2 my-2 hover:bg-fadedhover transition ease-in-out min-h-[72px]">
+
+                        <!-- trending tweet start -->
+
+                        <a class="flex text-fif cursor-pointer items-center  w-[48px] h-[48px] overflow-hidden flex justify-center items-center rounded-full"
+                            href="{{user_suggestion['user_username']}}">
+                            <img src="images/{{user_suggestion['user_avatar']}}" class="" alt="">
+
+                            <div class="mr-auto ml-2">
+
+                                <p class="sm font-semibold hover:underline hover:underline-offset-2 decoration-1">
+                                    {{user_suggestion['user_first_name']}}
+
+                                    % if user_suggestion.get('user_last_name'):
+                                    {{user_suggestion['user_last_name']}}
+                                    % end
+                                </p>
+                                <p class="text-fadedheadline font-semibold text-xs">
+                                    @{{user_suggestion['user_username']}}
+                                </p>
+                            </div>
+                        </a>
+                        % include("comp_followbuttons_suggestions")
+                    </div>
+                    % end
+                    <button
+                        class="hover:bg-fadedhover transition ease-in-out w-full flex items-start px-4 py-4 text-base text-bg-twitterblue">
+                        Show more
+                    </button>
+                    % end
+                </div>
+                % if logged_user:
+                %include('comp_trends')
+                % end
+                % end
+                % end
+                %include("new_to_twitter")
+                <!-- Twitter Info -->
+                <div id="scrollTarget"
+                    class="font-semibold  text-[#71767B] text-[13px] pt-4 pl-4 pr-6 my-4 [&>*]:my-[2px] [&>*]:mr-4 [&>*]: w-full flex flex-wrap leading-4 border-t-2 border-neutral-800 ">
+
+                    %include('comp_twitter_info')
+                </div>
+            </div>
+        </div>
+        </div>
+</body>
+
+</html>

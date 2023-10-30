@@ -1,0 +1,32 @@
+<div class=" bg-[#16181C] rounded-xl z-0 mt-6">
+    <p class="font-bold text-2xl py-2 px-4">Trends for you</p>
+
+    % for trend in trends:
+
+    <!-- trending tweet start -->
+    <div class="flex hover:bg-fadedhover transition ease-in-out my-2 px-4 py-2 cursor-pointer">
+        <div>
+            <p class="text-fadedheadline font-semibold text-xs">
+                {{trend['trend_location']}}
+            </p>
+            <p class="sm font-semibold">{{trend["trend_topic"]}}</p>
+            % if trend.get("trend_total_tweets"):
+            <p class="text-fadedheadline font-semibold text-xs">{{trend["trend_total_tweets"]}} Tweets</p>
+            % end
+        </div>
+        <div class="ml-auto h-fit hover:bg-twitterblue/[0.15] transition ease-in-out rounded-full p-1 group">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor"
+                class="w-6 h-6 rotate-90 group-hover:stroke-bg-twitterblue transition ease-in-out cursor-pointer ">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" />
+            </svg>
+        </div>
+    </div>
+    % end
+
+    <button
+        class="hover:bg-fadedhover transition ease-in-out w-full flex items-start px-4 py-4 text-base text-bg-twitterblue">
+        Show more
+    </button>
+</div>

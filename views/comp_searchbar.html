@@ -1,0 +1,59 @@
+<form class="search_form relative">
+    <div id="searchOverlay" onclick="closeSearchOverlay()"
+        class="hidden fixed  top-0 left-0 w-full h-full bg-white opacity-0 z-1000"></div>
+
+    <div class=" bg-black sticky top-0 z-20">
+        <div class="flex bg-[#16181C] rounded-full px-4 py-2 mt-2 mb-4">
+            <div class=" flex items-center">
+                <svg xmlns="http://www.w3.org/w-14 h-14 rounded-full /svg" fill="none" viewBox="0 0 24 24"
+                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                </svg>
+            </div>
+            <div>
+
+                <input id="search-twitter" type="text" placeholder="Search Twitter" name="search_field"
+                    class="pl-2 text-white outline-none bg-[#16181C]  border-none   flex focus:ring-[#16181C]"
+                    oninput="search()" />
+                <!-- <input oninput="search()" onblur="hide_search()" onfocus="show_search()" type="text" name="search"
+                    class="bg-[#16181C]  outline-none border-none focus:ring-[#16181C]" placeholder="Search Twitter" /> -->
+            </div>
+        </div>
+        <div id="searchModal"
+            class="w-full bg-black shadow-[0_0px_15px_1px_rgba(255,255,255,0.3)] h-[300px] absolute top-[110%] hidden rounded-xl">
+        </div>
+    </div>
+</form>
+
+<!-- <form id="search_form" class="sticky top-0 z-[100] px-3 bg-black">
+    <div class="z-1 bg-black py-2">
+        <div
+            class="group rounded-full bg-input px-4 py-2 flex items-center transition focus-within:bg-black focus-within:ring-2 focus-within:ring-main">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="w-5 h-5 text-zinc-400 group-focus-within:text-main">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+            </svg>
+            <input id="search-twitter" type="text" placeholder="Search Twitter" name="search_field"
+                class="pl-2 text-white outline-none bg-inherit flex-1" oninput="search()" />
+
+            <button id="clear-search-btn" class="hidden bg-main p-1 justify-center items-center w-6 h-6 rounded-full"
+                type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                    stroke="currentColor" aria-hidden="true" class="h-3 w-3 stroke-black">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+ Search box -->
+<!-- <div id="search-box"
+        class="hidden top-[3.1rem] w-full overflow-y-scroll h-[18rem] bg-black border border-dim-200 rounded-xl shadow-3xl absolute z-[200]">
+        <div id="box-content">
+            <div class="p-2 mt-4 flex justify-center items-center">
+                <p class="text-white text-lg">Search for users</p>
+            </div>
+        </div>
+    </div>

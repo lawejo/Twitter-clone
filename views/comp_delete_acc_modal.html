@@ -1,0 +1,19 @@
+<div id="deleteAccChangesOverlay"
+    class="hidden transition ease-in-out fixed z-50 left-0 top-0 w-full h-full overflow-auto bg-[#5b7083]/40 flex justify-center items-center">
+    <div class="bg-black  w-[320px] h-[260px] rounded-xl flex flex-col relative transition ease-in-out font-semibold">
+        <section class="flex flex-col w-full mt-2 p-4 h-full">
+            <h3 class="text-[20px]">Delete account?</h3>
+            <p class="text-[#71767C] text-15 mt-2">To proceed with deleting your account please put in your password and
+                submit</p>
+            <div class=" mt-auto mb-4 flex">
+                <form onsubmit="resetPasswordEmail(); return false"
+                    class="[&>input]:rounded-md w-full mx-auto [&>input]:bg-black [&>input]:w-full [&>input]:text-white flex flex-col [&>button]:w-full [&>button]:h-[44px] [&>button]:rounded-3xl items-start ">
+                    <label for="user_password "></label>
+                    <input id="user_password" placeholder="Password" name="user_password" type="password" required>
+                    <button
+                        class="border border-[#536471]/100 mt-2 hover:bg-[#f500005e]/[.15] hover:text-[#f4212e] hover:border-[#67070f]">Submit</button>
+                </form>
+            </div>
+        </section>
+    </div>
+</div>

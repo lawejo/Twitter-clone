@@ -1,0 +1,42 @@
+<div id="{{user['user_username']}}_followbuttons_profile">
+    <div id="unf_modal_profile" class="hidden fixed z-50 left-0 top-0 w-full h-full overflow-auto bg-[#5b708366]">
+        <div id="unfollow_modal_text" class="w-[320px] h-[300px] p-8 mx-auto my-[15%] bg-black rounded-2xl">
+            <p class="text-[20px] font-bold">Unfollow @{{user['user_username']}}?</p>
+            <p class="text-[15px] text-[#686D72]">Their Tweets will no longer show up in your home timeline. You can
+                still view their
+                profile,
+                unless their
+                Tweets are
+                protected.</p>
+            <!-- Modal button -->
+            <form method="DELETE" id="form_unfollow" onsubmit='unfollow(); return false' data-site="unf_profile">
+                <input id="followInput" style="display:none;" type="text" name="username"
+                    value="{{user['user_username']}}">
+                <button value="unf_profile"
+                    class="transition ease-out w-full h-[45px] bg-[#f5f7f8] hover:bg-[#d4d4d4] text-black rounded-full font-semibold text-[15px] mt-6">Unfollow</button>
+            </form>
+
+            <button onclick="unfollowModal(name,value);" value="unf_profile" name="{{user['user_username']}}"
+                class="transition ease-out w-full h-[45px] bg-inherit hover:bg-[#d4d4d4]/[0.1] text-[#f5f7f8] rounded-full font-semibold text-[15px] mt-3 border border-[#f5f7f8]/[0.4]">Cancel</button>
+            <!-- End of Modal button -->
+        </div>
+    </div>
+    % if not is_followed:
+    <!--Follow button  -->
+    <form method="POST" id="{{user['user_username']}}_form" onsubmit="follow(); return false" data-site="unf_profile">
+        <input id="followInput" style="display:none;" type="text" name="username" value="{{user['user_username']}}"
+            data-type="follow">
+        <button
+            class="transition ease-out w-[85px] h-[36px] bg-[#f5f7f8] hover:bg-[#d4d4d4] text-black rounded-full font-semibold text-[15px]">Follow</button>
+    </form>
+    <!-- End of Follow button  -->
+    % end
+    % if is_followed:
+    <!-- Unfollow Visible button -->
+    <button id="{{user['user_username']}}_unf_profile" onclick="unfollowModal(name, value); return false"
+        name="{{user['user_username']}}" value="unf_profile"
+        class="hover:after:content-['Unfollow'] hover:bg-[#f500005e]/[.15] hover:after:text-[#f4212e] hover:border-[#67070f] hover:before:content-none before:content-['Following']
+                    transition ease-out ml-auto w-[85px] h-[36px] bg-inherit  text-white rounded-full font-semibold text-[15px] border-2 border-bordergray"></button>
+    <!-- End of Unfollow Visible button -->
+    % end
+</div>
