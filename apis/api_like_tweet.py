@@ -5,7 +5,6 @@ import uuid
 import time
 import os
 import traceback
-# TODO: Consider adding timestamps (Also to, follow, and other apis)
 
 
 @post("/api-like-tweet")

@@ -16,7 +16,6 @@ def _():
         if not user_password_reset_key:
             raise Exception(
                 "Incorrect reset key, please make sure you copy the correct key from the email")
-        # TODO: Include safety incase user puts in spaces on copy
         current_user = db.execute(
             "SELECT * FROM users WHERE user_reset_key = ?", (user_password_reset_key,)).fetchone()
         if not current_user:

@@ -27,6 +27,5 @@ def _():
             db.rollback()
         traceback.print_exc()
         print(e)
-# TODO: Issue is that I cant save a str to the image folder
     finally:
         pass

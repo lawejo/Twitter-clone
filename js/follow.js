@@ -1,8 +1,6 @@
 "use strict"
-// #TODO: What if user follows someone from a tweet, that is not in the suggestion section
 async function follow() {
   const frm = event.target.closest('form') // the form
-  // #TODO: Clean up how user following/followers number is changed, use database instead of URL
   const conn = await fetch("/api-follow", {
     method: "POST",
     body: new FormData(frm)

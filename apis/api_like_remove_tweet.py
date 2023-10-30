@@ -5,8 +5,7 @@ import uuid
 import time
 import os
 import traceback
-import psycopg2 
-# TODO: Consider adding timestamps (Also to, follow, and other apis)
+import psycopg2
 
 
 @delete("/api-like-remove-tweet")

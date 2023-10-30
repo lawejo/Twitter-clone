@@ -7,7 +7,6 @@ async function likeTweet() {
         method: "POST",
         body: new FormData(frm)
     })
-    // #TODO: BUG, leg med likes, de dukker op på mærkelige tidspunkter
     const data = await conn.json() // to get plain text
     const username = frm[0].dataset.username;
     const tweetID = frm[0].value

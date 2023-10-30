@@ -1,5 +1,4 @@
 "use strict"
-// // #TODO: Create snippet for function
 const searchTwitter = document.querySelector("#search-twitter");
 const searchModal = document.querySelector("#searchModal");
 const searchOverlay = document.querySelector("#searchOverlay");

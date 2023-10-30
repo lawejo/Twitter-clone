@@ -1,7 +1,6 @@
 from bottle import post, response, request
 import x
 import traceback
-# TODO: DB Rollback, when, where and in what documents?
 
 
 @post("/api-verification")

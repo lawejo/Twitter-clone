@@ -6,7 +6,6 @@ import traceback
 ########################################
 import emails.email_deactive_acc as email
 ########################################
-# TODO: IS IT A DELETE METHOD WHEN WE ACTUALLY DONT DELETE ANNYTHING
 
 
 @post("/deactivate-account")

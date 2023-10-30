@@ -2,8 +2,6 @@ from bottle import post, request, response
 import time
 import x
 import bcrypt
-# TODO: ENSURE THAT USERS WHO ARE NOT VERIFIED ARE UNABLE TO LOGIN
-# TODO: create the jwt with the users data
 
 
 @post("/login")

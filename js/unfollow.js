@@ -8,7 +8,6 @@ async function unfollow() {
         body: new FormData(frm)
     })
     const data = await conn.json() // to get plain text
-    // #TODO: Clean up this function, doesnt work great on profile page
     const url = window.location.href
     const username = frm[0].value;
     const loc = frm.dataset.site;

@@ -8,7 +8,6 @@ import shared.queries as queries
 import traceback
 import shared.queries as queries
 ##############################
-# TODO: Fix that you cant go to profile pages without being logged in
 ##############################
 
 
